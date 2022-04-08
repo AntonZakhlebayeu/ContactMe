@@ -34,7 +34,7 @@ namespace ContactMe.Controllers
         {
             if (!ModelState.IsValid) return View(model);
             
-            var user = new User { Email = model.Email, Password = model.Password, FirstName = model.FirstName, LastName = model.LastName, Age = model.Age, UserName = model.FirstName };
+            var user = new User { Email = model.Email, Password = model.Password, FirstName = model.FirstName, LastName = model.LastName, Age = model.Age, UserName = model.Email };
                 
             var result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
@@ -62,19 +62,20 @@ namespace ContactMe.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid) return View(model);
+
+            var result = 
+                await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+
+            if (result.Succeeded)
             {
-                var result = 
-                    await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
-                if (result.Succeeded)
-                {
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Incorrect email and(or) password!");
-                }
+                return RedirectToAction("Index", "Home");
             }
+            else
+            {
+                ModelState.AddModelError("", "Incorrect email and (or) password!");
+            }
+
             return View(model);
         }
  

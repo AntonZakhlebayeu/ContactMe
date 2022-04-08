@@ -11,8 +11,6 @@ public class LoginViewModel
     [DataType(DataType.Password)]
     public string? Password { get; set; }
 
-    public string? ReturnUrl { get; init; }
-
     [Display(Name = "RememberMe?")]
     public bool RememberMe { get; set; }
 }
