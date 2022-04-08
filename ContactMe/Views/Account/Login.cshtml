@@ -1,0 +1,41 @@
+﻿@model ContactMe.ViewModels.LoginViewModel
+
+@{
+    ViewData["Title"] = "Welcome Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to social network ContactMe!</h1>
+</div>
+
+<h2>Log in</h2>
+<p>You don't have an account?</p>
+<form asp-action="Register" asp-controller="Account">
+    <input type="submit" value="Register" class="btn btn-primary" />
+</form>
+
+<form asp-action="Login" asp-controller="Account" asp-anti-forgery="true">
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    <div>
+        <div class="form-group">
+            <label asp-for="Email">Enter email:</label>
+            <input type="text" class="form-control" asp-for="Email" />
+            <span asp-validation-for="Email" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Password">Enter password:</label>
+            <input asp-for="Password" class="form-control" />
+            <span asp-validation-for="Password" />
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Login" class="btn btn-outline-dark" />
+        </div>
+    </div>
+</form>
+
+
+
+<div class="text-center">
+    <h3><b>Register or Login to send messages and chat with people.</b></h3>
+    <img src="main_logo.png" alt="Chat Logo" style="width: 100%;height: 100%;object-fit: cover;">
+</div>

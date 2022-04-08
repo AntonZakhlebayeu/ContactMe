@@ -62,3 +62,5 @@ C:\Users\hanny\RiderProjects\ContactMe\ContactMe\obj\Debug\net6.0\refint\Contact
 C:\Users\hanny\RiderProjects\ContactMe\ContactMe\obj\Debug\net6.0\ContactMe.pdb
 C:\Users\hanny\RiderProjects\ContactMe\ContactMe\obj\Debug\net6.0\ContactMe.genruntimeconfig.cache
 C:\Users\hanny\RiderProjects\ContactMe\ContactMe\obj\Debug\net6.0\ref\ContactMe.dll
+C:\Users\hanny\RiderProjects\ContactMe\ContactMe\bin\Debug\net6.0\Npgsql.dll
+C:\Users\hanny\RiderProjects\ContactMe\ContactMe\bin\Debug\net6.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
