@@ -5,12 +5,12 @@ namespace ContactMe.ViewModels;
 public class LoginViewModel
 {
     [Required(ErrorMessage = "Not specified Email")]
-    public string Email { get; set; }
+    public string? Email { get; init; }
          
     [Required(ErrorMessage = "Not specified password")]
     [DataType(DataType.Password)]
-    public string? Password { get; set; }
+    public string? Password { get; init; }
 
     [Display(Name = "RememberMe?")]
-    public bool RememberMe { get; set; }
+    public bool RememberMe { get; init; }
 }
