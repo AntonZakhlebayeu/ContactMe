@@ -2,12 +2,12 @@ using System.Net.WebSockets;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ContactMe.Data;
-using ContactMe.Handlers;
+using ContactMe.Hubs;
 using ContactMe.Models;
-using ContactMe.SocketsManager;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.SignalR;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,9 +29,7 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
-builder.Services.AddWebSocketManager();
-
-var serviceProvider = builder.Services.BuildServiceProvider();
+builder.Services.AddSignalR();
 
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -53,20 +51,31 @@ else
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
 
 app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseWebSockets();
-app.MapSockets("/ws", serviceProvider.GetService<WebSocketMessageHandler>());
+
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseCors();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapHub<ChatHub>("/chat");
+});
+
+
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}",
     "{controller=Account}/{action=Login}/{id?}");
 app.MapRazorPages();
+
 
 app.Run();

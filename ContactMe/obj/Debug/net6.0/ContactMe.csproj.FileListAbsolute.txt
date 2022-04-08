@@ -132,3 +132,4 @@ C:\Users\hanny\RiderProjects\ContactMe\ContactMe\obj\Debug\net6.0\ContactMe.genr
 C:\Users\hanny\RiderProjects\ContactMe\ContactMe\obj\Debug\net6.0\ref\ContactMe.dll
 C:\Users\hanny\RiderProjects\ContactMe\ContactMe\bin\Debug\net6.0\Microsoft.WebSockets.dll
 C:\Users\hanny\RiderProjects\ContactMe\ContactMe\bin\Debug\net6.0\System.Net.WebSockets.WebSocketProtocol.dll
+C:\Users\hanny\RiderProjects\ContactMe\ContactMe\bin\Debug\net6.0\Newtonsoft.Json.dll

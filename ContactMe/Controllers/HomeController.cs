@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using ContactMe.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace ContactMe.Controllers;
@@ -25,6 +26,7 @@ public class HomeController : Controller
     public IActionResult Index()
     {
         var user = _db.Users.FirstOrDefault(user => user.UserName == User.Identity!.Name);
+        var message = _db.Messages.ToListAsync();
         
         return View(user);
     }
@@ -33,7 +35,7 @@ public class HomeController : Controller
     public IActionResult Chat()
     {
         var user = _db.Users.FirstOrDefault(user => user.UserName == User.Identity!.Name);
-        
+
         return View(user);
     }
 
