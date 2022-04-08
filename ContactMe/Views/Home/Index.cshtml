@@ -7,7 +7,7 @@
 <div class="d-flex align-items-center">
         <div class="row">
           <div class="">
-            <h1 class="display-2 text-black">Hello @Model.FirstName!</h1>
+            <h1 class="display-2 text-black">Hello @Model.FirstName @Model.LastName!</h1>
             <h3 class="text-black mt-0 mb-5">This is your profile page.</h3>
           </div>
         </div>
@@ -18,6 +18,11 @@
 
 <div class="text-center">
     <h1 class="display-4">You're welcome in social network ContactMe!</h1>
-    <h3><b>Choose person, who you want to chat with:</b></h3>
+    <form class="form-inline" asp-controller="Home" asp-action="Chat">
+        <div class="d-grid gap-2">
+            <button class="btn btn-primary" type="submit"><b>Chat!</b></button>
+        </div>
+    </form>
+    <br/>
     <img src="https://i.ibb.co/D1YMszH/home-logo.jpg" alt="Home Logo" style="width: 100%;height: 100%;object-fit: cover;">
 </div>

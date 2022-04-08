@@ -9,16 +9,18 @@
 
     <ItemGroup>
         <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
-        <None Include="wwwroot\main_logo.png" />
     </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.3" />
         <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.3" />
         <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.3" />
+        <PackageReference Include="Microsoft.AspNetCore.WebSockets" Version="2.2.1" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.3" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.3" />
+        <PackageReference Include="Microsoft.WebSockets" Version="0.2.3.1" />
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.3" />
+        <PackageReference Include="System.Net.WebSockets" Version="4.3.0" />
     </ItemGroup>
 
 </Project>

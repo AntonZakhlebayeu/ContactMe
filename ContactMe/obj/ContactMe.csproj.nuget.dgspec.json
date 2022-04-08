@@ -53,6 +53,10 @@
               "target": "Package",
               "version": "[6.0.3, )"
             },
+            "Microsoft.AspNetCore.WebSockets": {
+              "target": "Package",
+              "version": "[2.2.1, )"
+            },
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[6.0.3, )"
@@ -61,9 +65,17 @@
               "target": "Package",
               "version": "[6.0.3, )"
             },
+            "Microsoft.WebSockets": {
+              "target": "Package",
+              "version": "[0.2.3.1, )"
+            },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[6.0.3, )"
+            },
+            "System.Net.WebSockets": {
+              "target": "Package",
+              "version": "[4.3.0, )"
             }
           },
           "imports": [

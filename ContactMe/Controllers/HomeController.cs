@@ -28,6 +28,14 @@ public class HomeController : Controller
         
         return View(user);
     }
+    
+    [Authorize]
+    public IActionResult Chat()
+    {
+        var user = _db.Users.FirstOrDefault(user => user.UserName == User.Identity!.Name);
+        
+        return View(user);
+    }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()

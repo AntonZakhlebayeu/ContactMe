@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "5XMBUM14DDuNgGLwn320mwPwUEiydddhntOh4KirYEo=",
+  "Hash": "8d7p9ICuPMK2K842KstKwvWGSuUt7zxy5Ne0N/T35hE=",
   "Source": "ContactMe",
   "BasePath": "_content/ContactMe",
   "Mode": "Default",
@@ -1120,6 +1120,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\site.js"
+    },
+    {
+      "Identity": "C:\\Users\\hanny\\RiderProjects\\ContactMe\\ContactMe\\wwwroot\\js\\WebSocket.js",
+      "SourceId": "ContactMe",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hanny\\RiderProjects\\ContactMe\\ContactMe\\wwwroot\\",
+      "BasePath": "_content/ContactMe",
+      "RelativePath": "js/WebSocket.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\WebSocket.js"
     },
     {
       "Identity": "C:\\Users\\hanny\\RiderProjects\\ContactMe\\ContactMe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",

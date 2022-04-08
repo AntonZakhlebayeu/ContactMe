@@ -1,9 +1,13 @@
+using System.Net.WebSockets;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ContactMe.Data;
+using ContactMe.Handlers;
 using ContactMe.Models;
+using ContactMe.SocketsManager;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.Options;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +29,10 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+builder.Services.AddWebSocketManager();
+
+var serviceProvider = builder.Services.BuildServiceProvider();
+
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options => 
@@ -51,6 +59,9 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseWebSockets();
+app.MapSockets("/ws", serviceProvider.GetService<WebSocketMessageHandler>());
 
 app.MapControllerRoute(
     name: "default",
