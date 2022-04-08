@@ -9,5 +9,10 @@ public class LoginViewModel
          
     [Required(ErrorMessage = "Not specified password")]
     [DataType(DataType.Password)]
-    public int Password { get; set; }
+    public string? Password { get; set; }
+
+    public string? ReturnUrl { get; init; }
+
+    [Display(Name = "RememberMe?")]
+    public bool RememberMe { get; set; }
 }

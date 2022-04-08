@@ -24,12 +24,12 @@ namespace ContactMe.ViewModels
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
-        public int Password { get; set; }
+        public string? Password { get; set; }
 
         [Required]
         [Compare("Password", ErrorMessage = "Passwords doesn't match!")]
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        public int PasswordConfirm { get; set; }
+        public string? PasswordConfirm { get; set; }
     }
 }
