@@ -4,14 +4,20 @@ namespace ContactMe.Models;
 
 public sealed class Message
 {
-    public int Id { get; set; }
+    public string? Achiever { get; set; }
     [Required]
-    public string? UserName { get; set; }
+    public string? Theme { get; set; }
     [Required]
     public string? Text { get; set; }
-    public DateTime When { get; set; }
-    
-    public string UserId { get; set; }
-    
-    public User? Sender { get; set; }
+    public string? Sender { get; set; }
+    public string? When { get; set; }
+
+    public Message(string achiever, string theme, string text, string sender, string when)
+    {
+        Achiever = achiever;
+        Theme = theme;
+        Text = text;
+        Sender = sender;
+        When = when;
+    }
 }

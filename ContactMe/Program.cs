@@ -1,4 +1,5 @@
 using System.Net.WebSockets;
+using ContactMe;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ContactMe.Data;
@@ -16,6 +17,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(connectionString));
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+builder.Services.AddSingleton<IUserIdProvider, CustomUserIdProvider>();
 
 builder.Services.AddIdentity<User, IdentityRole>(options =>
     {

@@ -1,4 +1,5 @@
-﻿using ContactMe.Data;
+﻿using ContactMe.Controllers;
+using ContactMe.Data;
 using ContactMe.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
@@ -7,10 +8,42 @@ namespace ContactMe.Hubs;
 
 public class ChatHub : Hub
 {
-    [Authorize]
-    public async Task SendMessage(string user, string message)
+
+    private IServiceProvider _sp;
+
+    public ChatHub(IServiceProvider sp)
     {
-        await Clients.All.SendAsync("ReceiveMessage", user, message);
+        _sp = sp;
     }
+
+
+    [Authorize]
+    public async Task SendMessage(string theme, string message, string achiever)
+    {
+        var userName = Context.User!.Identity!.Name;
+
+        /*
+        if(Context.UserIdentifier!=achiever) 
+            await Clients.User(Context.UserIdentifier!).SendAsync("ReceiveMessage", userName, message);
+            */
+
+        var messageTime = DateTime.Now.ToString("t");
+        await Clients.User(achiever).SendAsync("ReceiveMessage", userName, theme, message, messageTime, achiever);
+    }
+
+    public void SaveMessage(string sender, string theme, string text, string achiever, string time)
+    {
+        var message = new Message(achiever, theme, text, sender, time);
+
+        
+        using (var scope = _sp.CreateScope())
+        {
+            var _dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            
+            _dbContext.Messages.Add(message);
+            _dbContext.SaveChanges();
+        }
+    }
+
     
 }

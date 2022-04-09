@@ -11,12 +11,15 @@ namespace ContactMe.Controllers;
 
 public class HomeController : Controller
 {
+    public static HomeController Instance { get; private set; }
+
     private readonly ILogger<HomeController> _logger;
     private readonly UserManager<User> _userManager;
     private readonly ApplicationDbContext _db;
 
     public HomeController(ILogger<HomeController> logger, UserManager<User> userManager, ApplicationDbContext context)
     {
+        Instance = this;
         _logger = logger;
         _userManager = userManager;
         _db = context;
@@ -26,8 +29,7 @@ public class HomeController : Controller
     public IActionResult Index()
     {
         var user = _db.Users.FirstOrDefault(user => user.UserName == User.Identity!.Name);
-        var message = _db.Messages.ToListAsync();
-        
+
         return View(user);
     }
     
