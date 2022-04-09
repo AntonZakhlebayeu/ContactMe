@@ -21,7 +21,7 @@ public class ChatHub : Hub
     public async Task SendMessage(string theme, string message, string achiever)
     {
         var userName = Context.User!.Identity!.Name;
-        var messageTime = DateTime.Now.ToString("t");
+        var messageTime = DateTime.UtcNow.AddHours(3).ToString("t");
         
         var newMessage = new Message(achiever, theme, message, userName, messageTime);
 
