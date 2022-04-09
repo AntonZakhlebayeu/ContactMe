@@ -21,31 +21,24 @@ public class ChatHub : Hub
     public async Task SendMessage(string theme, string message, string achiever)
     {
         var userName = Context.User!.Identity!.Name;
-
-        /*
-        if(Context.UserIdentifier!=achiever) 
-            await Clients.User(Context.UserIdentifier!).SendAsync("ReceiveMessage", userName, message);
-            */
-
         var messageTime = DateTime.Now.ToString("t");
-        await Clients.User(achiever).SendAsync("ReceiveMessage", userName, theme, message, messageTime, achiever);
-    }
-
-    public void SaveMessage(string sender, string theme, string text, string achiever, string time)
-    {
-
-        Console.WriteLine(_sp);
-
         
+        var newMessage = new Message(achiever, theme, message, userName, messageTime);
+
+        int id;
+
         using (var scope = _sp.CreateScope())
         {
             var _dbContext = scope.ServiceProvider.GetRequiredService<MessageDbContext>();
-            var message = new Message(achiever, theme, text, sender, time);
-            
-            _dbContext.Messages!.Add(message);
+
+            _dbContext.Messages!.Add(newMessage);
             _dbContext.SaveChanges();
+            
+            var savedMessage = _dbContext.Messages.FirstOrDefault(m => m.Text == message);
+            id = savedMessage!.Id;
         }
+        await Clients.User(achiever).SendAsync("ReceiveMessage", userName, theme, message, messageTime, id);
     }
 
-    
+
 }

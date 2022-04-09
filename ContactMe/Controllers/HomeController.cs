@@ -12,12 +12,13 @@ namespace ContactMe.Controllers;
 public class HomeController : Controller
 {
     public static HomeController Instance { get; private set; }
-
+    
     private readonly ILogger<HomeController> _logger;
     private readonly UserManager<User> _userManager;
     private readonly ApplicationDbContext _db;
+    private readonly MessageDbContext _messageDbContext;
 
-    public HomeController(ILogger<HomeController> logger, UserManager<User> userManager, ApplicationDbContext context)
+    public HomeController(ILogger<HomeController> logger, UserManager<User> userManager, ApplicationDbContext context, MessageDbContext messageDbContext)
     {
         Instance = this;
         _logger = logger;
@@ -34,11 +35,19 @@ public class HomeController : Controller
     }
     
     [Authorize]
-    public IActionResult Chat()
+    public IActionResult Mailbox()
     {
         var user = _db.Users.FirstOrDefault(user => user.UserName == User.Identity!.Name);
 
         return View(user);
+    }
+    
+    [HttpPost]
+    [Authorize]
+    public IActionResult Mail()
+    {
+        var message = _messageDbContext.Messages!.FirstOrDefault(m => m.Achiever == User.Identity.Name );
+        return View(message);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

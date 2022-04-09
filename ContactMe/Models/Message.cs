@@ -13,7 +13,7 @@ public sealed class Message
     public string? Sender { get; set; }
     public string? Time { get; set; }
 
-    public Message(string achiever, string theme, string text, string sender, string time)
+    public Message(string achiever, string theme, string text, string? sender, string time)
     {
         Achiever = achiever;
         Theme = theme;
