@@ -5,29 +5,32 @@ var connection = new signalR.HubConnectionBuilder().withUrl("/chat").build();
 document.getElementById("sendButton").disabled = true;
 
 connection.on("ReceiveMessage", function (user, theme, text, time, id) {
+    
+    var messageDiv = document.createElement("div");
+    messageDiv.className = "newMessage" + id.toString();
+    document.getElementById("newMessages").appendChild(messageDiv);
     var li = document.createElement("li");
-    document.getElementById("newMessages").appendChild(li);
+    messageDiv.appendChild(li);
     li.textContent = `${user}: send you mail with theme: ${theme}. At time: ${time}. Check this!`;
     var button = document.createElement("button");
     button.textContent = "Check!";
     button.className = "btn btn-primary";
     button.addEventListener("click", function (event) {
-        document.getElementById("newMessages").removeChild(button);
+        messageDiv.removeChild(button);
         var messageText = document.createElement("p");
         messageText.textContent = text;
-        document.getElementById("newMessages").appendChild(messageText);
+        messageDiv.appendChild(messageText);
         let button2 = document.createElement('button');
         button2.textContent = "Seen";
         button2.className = "btn btn-primary";
         button2.addEventListener("click", function (event) {
-            var head = document.getElementById("newMessages");
-            head.removeChild(button2);
-            head.removeChild(messageText);
-            head.removeChild(li);
+            messageDiv.removeChild(button2);
+            messageDiv.removeChild(messageText);
+            messageDiv.removeChild(li);
         });
-        document.getElementById("newMessages").appendChild(button2);
+        messageDiv.appendChild(button2);
     });
-    document.getElementById("newMessages").appendChild(button);
+    messageDiv.appendChild(button);
 });
 
 connection.start().then(function () {
