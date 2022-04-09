@@ -9,7 +9,7 @@ namespace ContactMe.Hubs;
 public class ChatHub : Hub
 {
 
-    private IServiceProvider _sp;
+    private readonly IServiceProvider _sp;
 
     public ChatHub(IServiceProvider sp)
     {
@@ -33,14 +33,16 @@ public class ChatHub : Hub
 
     public void SaveMessage(string sender, string theme, string text, string achiever, string time)
     {
-        var message = new Message(achiever, theme, text, sender, time);
+
+        Console.WriteLine(_sp);
 
         
         using (var scope = _sp.CreateScope())
         {
-            var _dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            var _dbContext = scope.ServiceProvider.GetRequiredService<MessageDbContext>();
+            var message = new Message(achiever, theme, text, sender, time);
             
-            _dbContext.Messages.Add(message);
+            _dbContext.Messages!.Add(message);
             _dbContext.SaveChanges();
         }
     }

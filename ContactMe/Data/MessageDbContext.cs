@@ -4,9 +4,10 @@ using ContactMe.Models;
 
 namespace ContactMe.Data;
 
-public sealed class ApplicationDbContext : IdentityDbContext<User>
+public sealed class MessageDbContext : IdentityDbContext
 {
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+    public DbSet<Message>? Messages { get; set; }
+    public MessageDbContext(DbContextOptions<MessageDbContext> options)
         : base(options)
     {
         Database.EnsureCreated();
