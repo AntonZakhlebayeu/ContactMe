@@ -11,8 +11,6 @@ namespace ContactMe.Controllers;
 
 public class HomeController : Controller
 {
-    public static HomeController Instance { get; private set; }
-    
     private readonly ILogger<HomeController> _logger;
     private readonly UserManager<User> _userManager;
     private readonly ApplicationDbContext _db;
@@ -20,10 +18,10 @@ public class HomeController : Controller
 
     public HomeController(ILogger<HomeController> logger, UserManager<User> userManager, ApplicationDbContext context, MessageDbContext messageDbContext)
     {
-        Instance = this;
         _logger = logger;
         _userManager = userManager;
         _db = context;
+        _messageDbContext = messageDbContext;
     }
     
     [Authorize]
@@ -44,10 +42,18 @@ public class HomeController : Controller
     
     [HttpPost]
     [Authorize]
-    public IActionResult Mail()
+    public IActionResult Mails()
     {
-        var message = _messageDbContext.Messages!.FirstOrDefault(m => m.Achiever == User.Identity.Name );
-        return View(message);
+        ICollection<Message> messages = new List<Message>();
+        var allMessages = _messageDbContext.Messages;
+        
+        foreach (var message in allMessages)
+        {
+            if(message.Achiever == User.Identity.Name)
+                messages.Add(message);
+        }
+        
+        return View(messages);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

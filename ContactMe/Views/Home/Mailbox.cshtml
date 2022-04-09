@@ -5,31 +5,41 @@
 }
 
 <div class="d-flex align-items-center">
-        <div class="row">
-          <div class="">  
-            <h3 id="userName">@Model.FirstName @Model.LastName</h3>
-            <h3 class="text-black mt-0 mb-5">This is chat page page.</h3>
-          </div>
-        </div>
+  <div class="row">
+    <div class="">  
+      <h3 id="userName">@Model.FirstName @Model.LastName</h3>
+      <h3 class="text-black mt-0 mb-5">This is chat page page.</h3>
+    </div>
+  </div>
 </div>
+
+<form class="form-inline" asp-controller="Home" asp-action="Mails">
+  <button class="btn btn-primary" type="submit"><b>Show all messages.</b></button>
+</form>
 
 <div class="text-center">
   <h3 class="display-4">Let's chatting!</h3>
   
-  <div class="form-group">
     <br/>
-    <input type="text" class="form-control" id="receiver" placeholder="Who do you want to chat?">   
+    <div class="input-group flex-nowrap">
+      <span class="input-group-text">Email</span>
+      <input type="text" class="form-control" placeholder="email@example.com" id ="receiver" aria-label="Username" aria-describedby="addon-wrapping">
+    </div> 
     <br/>
-    <input type="text" class="form-control" id="themeOfMessage" placeholder="What the theme of your message?">
+    <div class="input-group flex-nowrap">
+      <span class="input-group-text">Theme</span>
+      <input type="text" class="form-control" placeholder="What the theme of message?" id="themeOfMessage" aria-label="Username" aria-describedby="addon-wrapping">
+    </div>
     <br/>
-    <input type="text" class="form-control" id="messageToSend" placeholder="Write your message here!">
+    <div class="input-group flex-nowrap">
+      <span class="input-group-text">Theme</span>
+      <input type="text" class="form-control" placeholder="Write your message here!" id="messageToSend" aria-label="Username" aria-describedby="addon-wrapping">
+    </div>
     <br/>
     <input type="button" class="btn btn-primary" id="sendButton" value="Send!"/>
-  </div>
 </div>
 
 <div id="newMessages"></div>
-
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.0-preview.2.22153.2/signalr.min.js"></script>
 <script src="/js/chat.js"></script>

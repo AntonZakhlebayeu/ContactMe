@@ -11,14 +11,14 @@ connection.on("ReceiveMessage", function (user, theme, text, time, id) {
     document.getElementById("newMessages").appendChild(messageDiv);
     var li = document.createElement("li");
     messageDiv.appendChild(li);
-    li.textContent = `${user}: send you mail with theme: ${theme}. At time: ${time}. Check this!`;
+    li.innerText = `${user}: send you mail!\nMail theme: ${theme}.\nAt time: ${time}.\nCheck this!`;
     var button = document.createElement("button");
     button.textContent = "Check!";
     button.className = "btn btn-primary";
     button.addEventListener("click", function (event) {
         messageDiv.removeChild(button);
         var messageText = document.createElement("p");
-        messageText.textContent = text;
+        messageText.innerText =  "Message text:\n\n"+ text;
         messageDiv.appendChild(messageText);
         let button2 = document.createElement('button');
         button2.textContent = "Seen";
@@ -28,8 +28,12 @@ connection.on("ReceiveMessage", function (user, theme, text, time, id) {
             messageDiv.removeChild(messageText);
             messageDiv.removeChild(li);
         });
+        let br = document.createElement("br");
+        messageDiv.appendChild(br);
         messageDiv.appendChild(button2);
     });
+    let br = document.createElement("br");
+    messageDiv.appendChild(br);
     messageDiv.appendChild(button);
 });
 
@@ -51,5 +55,9 @@ document.getElementById("sendButton").addEventListener("click", function (event)
     document.getElementById("messageToSend").value = "";
     event.preventDefault();
 });
+
+function showMessage(id) {
+    console.log(id);
+}
 
 

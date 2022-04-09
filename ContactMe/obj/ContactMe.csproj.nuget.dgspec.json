@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "/Users/antonzahlebaev/ITransitionInternship/ContactMe/ContactMe/ContactMe.csproj": {}
+    "C:\\Users\\hanny\\RiderProjects\\ContactMe\\ContactMe\\ContactMe.csproj": {}
   },
   "projects": {
-    "/Users/antonzahlebaev/ITransitionInternship/ContactMe/ContactMe/ContactMe.csproj": {
+    "C:\\Users\\hanny\\RiderProjects\\ContactMe\\ContactMe\\ContactMe.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/antonzahlebaev/ITransitionInternship/ContactMe/ContactMe/ContactMe.csproj",
+        "projectUniqueName": "C:\\Users\\hanny\\RiderProjects\\ContactMe\\ContactMe\\ContactMe.csproj",
         "projectName": "ContactMe",
-        "projectPath": "/Users/antonzahlebaev/ITransitionInternship/ContactMe/ContactMe/ContactMe.csproj",
-        "packagesPath": "/Users/antonzahlebaev/.nuget/packages/",
-        "outputPath": "/Users/antonzahlebaev/ITransitionInternship/ContactMe/ContactMe/obj/",
+        "projectPath": "C:\\Users\\hanny\\RiderProjects\\ContactMe\\ContactMe\\ContactMe.csproj",
+        "packagesPath": "C:\\Users\\hanny\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\hanny\\RiderProjects\\ContactMe\\ContactMe\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "/Users/antonzahlebaev/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\hanny\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -104,7 +104,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.201/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

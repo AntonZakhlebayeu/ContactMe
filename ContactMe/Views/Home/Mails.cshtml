@@ -1,0 +1,41 @@
+﻿@using Microsoft.JSInterop
+@model IEnumerable<Message>
+
+@{
+    ViewData["Title"] = "Mail Page";
+}
+
+<script src="~/js/site.js"></script>
+
+
+<div class="d-flex align-items-center">
+        <div class="row">
+          <div class="">  
+            <h3 id="userName">All received messages:</h3>
+          </div>
+        </div>
+</div>
+
+<div class="messageField">
+    @foreach (var message in Model)
+    {
+        var messageClass = "message" + message.Id.ToString();
+        var buttonId = "button" + message.Id.ToString();
+        { 
+            <div class=@messageClass>
+                <li><b>@message.Sender</b>: send you mail!<br/>Mail theme: <b>@message.Theme</b>.<br/>At time: <b>@message.Time</b>.</li>
+                <div id=@message.Id.ToString() style="display: none">
+                    <br/>
+                    <p><b>Message text:</b></p>
+                    <p><i>@message.Text</i></p>
+                    <li>to: <b>@message.Achiever</b></li>
+                </div>
+                <br/>
+                <button class="nav-link btn btn-primary text-dark" id=@buttonId type="button" onclick="showMessage(@message.Id)" >Show more</button>
+            </div>
+            <br/>
+        }
+    }
+</div>
+
+
