@@ -56,8 +56,6 @@ document.getElementById("sendButton").addEventListener("click", function (event)
     event.preventDefault();
 });
 
-function showMessage(id) {
-    console.log(id);
-}
+
 
 

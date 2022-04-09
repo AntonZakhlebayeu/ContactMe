@@ -4,3 +4,8 @@ function showMessage (id) {
     let button = document.getElementById("button"+id);
     button.textContent = (button.textContent == 'Show less') ? 'Show more' : 'Show less';
 }
+
+function autoGrow(element) {
+    element.style.height = "5px";
+    element.style.height = (element.scrollHeight)+"px";
+}

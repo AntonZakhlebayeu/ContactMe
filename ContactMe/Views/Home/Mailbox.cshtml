@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Mailbox Page";
 }
+<script src="/js/site.js"></script>
 
 <div class="d-flex align-items-center">
   <div class="row">
@@ -32,8 +33,9 @@
     </div>
     <br/>
     <div class="input-group flex-nowrap">
-      <span class="input-group-text">Theme</span>
-      <input type="text" class="form-control" placeholder="Write your message here!" id="messageToSend" aria-label="Username" aria-describedby="addon-wrapping">
+      <span class="input-group-text">Message</span>
+      <textarea type="text" class="form-control" placeholder="Write your message here!" id="messageToSend" aria-label="Username" aria-describedby="addon-wrapping" 
+             style = "resize: none; overflow: hidden;min-height: 50px;max-height: 100px;" oninput="autoGrow(this)"></textarea>
     </div>
     <br/>
     <input type="button" class="btn btn-primary" id="sendButton" value="Send!"/>
