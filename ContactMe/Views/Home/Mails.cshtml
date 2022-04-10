@@ -21,7 +21,7 @@
     {
         var messageClass = "message" + message.Id.ToString();
         var buttonId = "button" + message.Id.ToString();
-        { 
+        {
             <div class=@messageClass>
                 <li><b>@message.Sender</b>: send you mail!<br/>Mail theme: <b>@message.Theme</b>.<br/>At time: <b>@message.Time</b>.</li>
                 <div id=@message.Id.ToString() style="display: none">

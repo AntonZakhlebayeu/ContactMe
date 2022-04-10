@@ -1,23 +1,23 @@
 ﻿let userName;
 
-var connection = new signalR.HubConnectionBuilder().withUrl("/chat").build();
+let connection = new signalR.HubConnectionBuilder().withUrl("/chat").build();
 
 document.getElementById("sendButton").disabled = true;
 
 connection.on("ReceiveMessage", function (user, theme, text, time, id) {
-    
-    var messageDiv = document.createElement("div");
+    alert("You just received a message from a user " + user);
+    let messageDiv = document.createElement("div");
     messageDiv.className = "newMessage" + id.toString();
     document.getElementById("newMessages").appendChild(messageDiv);
-    var li = document.createElement("li");
+    let li = document.createElement("li");
     messageDiv.appendChild(li);
     li.innerText = `${user}: send you mail!\nMail theme: ${theme}.\nAt time: ${time}.\nCheck this!`;
-    var button = document.createElement("button");
+    let button = document.createElement("button");
     button.textContent = "Check!";
     button.className = "btn btn-primary";
     button.addEventListener("click", function (event) {
         messageDiv.removeChild(button);
-        var messageText = document.createElement("p");
+        let messageText = document.createElement("p");
         messageText.innerText =  "Message text:\n\n"+ text;
         messageDiv.appendChild(messageText);
         let button2 = document.createElement('button');
@@ -27,6 +27,7 @@ connection.on("ReceiveMessage", function (user, theme, text, time, id) {
             messageDiv.removeChild(button2);
             messageDiv.removeChild(messageText);
             messageDiv.removeChild(li);
+            messageDiv.remove();
         });
         let br = document.createElement("br");
         messageDiv.appendChild(br);
@@ -35,6 +36,10 @@ connection.on("ReceiveMessage", function (user, theme, text, time, id) {
     let br = document.createElement("br");
     messageDiv.appendChild(br);
     messageDiv.appendChild(button);
+});
+
+connection.on("ErrorMessage", function (achiever) {
+    alert('User ' + achiever + ' does not exist!');
 });
 
 connection.start().then(function () {

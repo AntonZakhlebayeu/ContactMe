@@ -3,6 +3,7 @@ using ContactMe.Data;
 using ContactMe.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
+using SQLitePCL;
 
 namespace ContactMe.Hubs;
 
@@ -24,20 +25,30 @@ public class ChatHub : Hub
         var messageTime = DateTime.UtcNow.AddHours(3).ToString("t");
         
         var newMessage = new Message(achiever, theme, message, userName, messageTime);
-
-        int id;
+        
+        User _achiever;
 
         using (var scope = _sp.CreateScope())
         {
-            var _dbContext = scope.ServiceProvider.GetRequiredService<MessageDbContext>();
-
-            _dbContext.Messages!.Add(newMessage);
-            _dbContext.SaveChanges();
+            int id;
             
-            var savedMessage = _dbContext.Messages.FirstOrDefault(m => m.Text == message);
-            id = savedMessage!.Id;
+            var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            var messageContext = scope.ServiceProvider.GetRequiredService<MessageDbContext>();
+
+            _achiever = dbContext.Users.FirstOrDefault(u => u.Email == achiever)!;
+
+            if (_achiever == null)
+                await Clients.User(Context.UserIdentifier!).SendAsync("ErrorMessage", achiever);
+            else
+            {
+                messageContext.Messages!.Add(newMessage);
+                await messageContext.SaveChangesAsync();
+
+                var savedMessage = messageContext.Messages.FirstOrDefault(m => m.Text == message);
+                id = savedMessage!.Id;
+                await Clients.User(achiever).SendAsync("ReceiveMessage", userName, theme, message, messageTime, id);
+            }
         }
-        await Clients.User(achiever).SendAsync("ReceiveMessage", userName, theme, message, messageTime, id);
     }
 
 
